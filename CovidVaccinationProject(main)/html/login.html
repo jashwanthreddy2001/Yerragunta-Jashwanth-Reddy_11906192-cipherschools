@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        #login{
+            margin-left: 90px;
+        }
+        #password
+        {
+         margin-left: 180px;   
+        }
+        body {
+      background-image: url('loginpage.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;  
+      background-size: cover;
+        }
+        label,h1
+        {
+            font-size: 30px;
+        }
+        input{
+            padding: 8px;
+            padding-right: 15px;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body  >
+
+<h1 th:if="${isAdmin}"><b>Administrator Login</b></h1>
+
+<p th:text="${error}"></p>
+<form method="post" th:object="${User}" th:action="@{/user/login}" th:if="${isUser}">
+    <label for="username"><b>Enter Aadhaar number :</b></label>
+    <input type="text" id="username" name="aadhaar" maxlength="12" ><br>
+    <label for="password"><b>Password:</b></label>
+    <input type="password" id="password" name="password" ><br>
+    <input type="submit"  id="login"value="Login"/>
+</form>
+<h1 th:if="${isUser}"><b>User Login</b></h1>
+<form method="post" th:object="${Admin}" th:action="@{/admin/login}" th:if="${isAdmin}">
+    <label for="username"><b>Enter Aadhaar number :</b></label>
+    <input type="text" id="username" maxlength="12" name="aadhaar"/><br>
+    <label for="password"><b>Password:</b></label>
+    <input type="password" id="password" name="password"/><br>
+    <input type="submit" id="login" value="Login"/>
+</form>
+
+
+</body>
+</html>
